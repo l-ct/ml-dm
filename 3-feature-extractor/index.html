@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>Ml5 Feature Extractor</title>
+		<style>
+			html {
+				font-family: verdana;
+			}
+			p {
+				line-height: 1;
+				font-size: 10vh;
+			}
+			button {
+				font-size: inherit;
+				font-family: inherit;
+				margin: 0 2rem 2rem 0;
+				background: none;
+				border: 1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<button onclick="add('Sad', this)">Sad</button>
+			<button onclick="add('Happy', this)">Happy</button>
+			<button onclick="train(this)">Train</button>		
+		</nav>
+		<script src="https://unpkg.com/ml5@0.1.1/dist/ml5.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
