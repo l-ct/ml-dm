@@ -32,9 +32,10 @@ function setup(){
 }
 
 function gotResults(err, results){
+	console.log(results);
 	// vanilla js code to place results in the
 	// <p> element which was created at the top
-	p.innerHTML = results[0].className;
+	p.innerHTML = results[0].label;
 	// gotResults passed as an argument recursively...
 	classifier.predict(gotResults);
 }

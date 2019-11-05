@@ -12,7 +12,7 @@ function loaded(element){
 	// Make a prediction
 	classifier.predict(element, function(err, results){
 		console.log(results);
-		document.getElementById('result').innerHTML = results[0].className;
+		document.getElementById('result').innerHTML = results[0].label;
 	});
 }
 

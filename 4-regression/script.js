@@ -32,8 +32,8 @@ function gotResults(error, result) {
 	if (error) {
 		console.error(error);
 	} else {
-		console.log((result * 100) + '%');
-		rectangle.style.left = (result * 100) + '%';
+		console.log(result);
+		rectangle.style.left = (result.value * 100) + '%';
 		// notice now we're using predict...
 		regressor.predict(gotResults);
 	}
@@ -44,6 +44,7 @@ function add(element){
 	count++;
 	console.log(sliderValue, count);
 	element.innerHTML = 'Add ' + count;
+	console.log(sliderValue / 100);
 	regressor.addImage(sliderValue / 100);
 }
 

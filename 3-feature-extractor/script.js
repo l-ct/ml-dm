@@ -22,19 +22,27 @@ function setup() {
 	});
 }
 
-function gotResults(error, result) {
+function gotResults(error, results) {
 	if (error) {
 		console.error(error);
 	} else {
-		label.innerHTML = result;
+		console.log(results);
+		let innerLabel = "";
+		let maxConfidence = 0;
+		for(let i=0; i<results.length; i++){
+			if(results[i].confidence > maxConfidence){
+				innerLabel = results[i].label;
+			}
+		}
+		label.innerHTML = innerLabel;
 		classifier.classify(gotResults);
 	}
 }
 
 let count = {
-	// this is bad style to have upperCase properties
-	// but managing the case would be add lines of code
-	// so I left like this
+	// it's bad style to have upperCase properties
+	// but managing the case would add lines of code
+	// so I'm leaving them like this
 	Sad: 0,
 	Happy: 0
 };
