@@ -1,0 +1,12 @@
+html {
+    font-family: verdana;
+    font-size: calc(2vmin + 16px);
+}
+button {
+    font-size: inherit;
+    font-family: inherit;
+    margin: 0 2rem 2rem 0;
+    background: none;
+    border: 1px solid #000;
+    text-transform: capitalize;
+}

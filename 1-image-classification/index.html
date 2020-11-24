@@ -1,27 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Ml5 Image Classification</title>
-		<style>
-			img {
-				width: 100%;
-				max-width: 800px;
-			}
-			p {
-				font-family: verdana;
-				font-size: 7vh;
-			}
-		</style>
-		<script src="https://unpkg.com/ml5@0.4.1/dist/ml5.min.js"></script>
-		<script src="script.js"></script>
-	</head>
+<html>
+    <head>
+        <title>Ml5 Image Classification</title>
 
-	<body>
-		<!-- unfortunately, tensorflow won't allow you to load images
-		from external urls... -->
-		<img onload="loaded(this)" src="labrador.jpg"></img>
+        <!-- modify the linked css file to change how page appears -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- change src attribute's url manually to load different pictures -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Short_lighthouse_of_Westkapelle.png/1200px-Short_lighthouse_of_Westkapelle.png">
 
-		<p id="result"></p>
-	</body>
+        <!-- below is where the results will go -->
+        <main>
+            <p id="result"></p>
+            <p id="probability"></p>
+        </main>
+
+        <!-- linking to p5.js and ml5.js libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+        <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+
+        <!-- linking to our js file -->
+        <script src="script.js"></script>
+    </body>
 </html>

@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: verdana;
+    font-size: calc(2vmin + 14px);
+}
+
+video {
+    width: 100vw;
+    height: 100vh;
+}
+
+p {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    /* centers the element */
+    transform: translateX(-50%);
+}

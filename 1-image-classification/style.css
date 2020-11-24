@@ -1,0 +1,8 @@
+html {
+    font-family: verdana;
+    font-size: calc(1vmin + 14px);
+}
+img {
+    width: 100%;
+    max-width: 800px;
+}
