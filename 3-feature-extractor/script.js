@@ -2,40 +2,51 @@
 
 
 /*
+ *
+ * the methods addImage() and featureExtractor() are documented at
+ * https://ml5js.org/docs/FeatureExtractor
+ *
+ */
 
-addImage()
-featureExtractor()
-documented at
-https://ml5js.org/docs/FeatureExtractor
-
-*/
-
-let classifier, label;
+// global variables
+let classifier, result;
 
 function setup() {
 
+    // p5 method that grabs the buttons in the HTML page
     let buttons = selectAll('button');
 
-    // adding an attribute so we can keep track of how many times
-    // we've clicked a given number
+    // adding custom label and count attribute
+    // to each button's HTML tag
+    // where we'll store how many times
+    // we've clicked a particular label
     buttons.forEach(button => {
         button.attribute('label', button.html());
         button.attribute('count', 0);
     });
 
+    // no need for the <canvas> element on this project
     noCanvas();
 
+    // this function extracts MobileNet's image detection model
+    // from the data it was trained on, so we can train new data with it
+    // https://ml5js.org/reference/api-FeatureExtractor/
     const mobilenet = ml5.featureExtractor('MobileNet', () => {
         console.log('MobileNet ready');
     });
 
-    // creating a button to train...
-    // added before video is creatted.
+    // creating an html <button> to train...
+    // I've decided to add before video is created
+    // so it looks a little better in the layout
     const trainButton = createButton('Train');
 
+    // p5 method that grabs a video feed from the user's device
     const video = createCapture(VIDEO);
 
+    // these options allow us to add however many buttons we want
     const options = { numLabels: buttons.length };
+
+    // this method runs 
     classifier = mobilenet.classification(video,  options, () => {
         console.log('video ready');
 
@@ -65,7 +76,8 @@ function setup() {
         // <p> tag will be added at end of page below video
         result = createP();
 
-
+        // when the trainButton is clicked,
+        // the training function will begin
         trainButton.mouseClicked(() => {
             classifier.train(loss => {
                 if (loss == null) {
@@ -80,17 +92,26 @@ function setup() {
     });
 }
 
+// callback function that gets invoked when the data has finished training
+// notice that this method calls passes itself when it reaches the end,
+// that will have the effect that it'll continue to run all the time
 function gotResults(error, results) {
     if (error) {
+        // sends a message to the browser's JavaScript console
         console.error(error);
     } else {
+        // sends a message to the browser's JavaScript console
         console.log(results);
         result.html(getMaxLabel(results));
+        // this is a recursive function
+        // meaning when it reaches this point
+        // it calls itself
         classifier.classify(gotResults);
     }
 }
 
-
+// this is just a little helper function
+// to sift through the complex "results" array
 function getMaxLabel(results){
     let maxConfidence = 0;
     let maxLabel = '';
