@@ -4,7 +4,7 @@
 /*
  *
  * the methods addImage() and featureExtractor() are documented at
- * https://ml5js.org/docs/FeatureExtractor
+ * https://learn.ml5js.org/#/reference/feature-extractor
  *
  */
 
@@ -34,11 +34,6 @@ function setup() {
     const mobilenet = ml5.featureExtractor('MobileNet', () => {
         console.log('MobileNet ready');
     });
-
-    // creating an html <button> to train...
-    // I've decided to add before video is created
-    // so it looks a little better in the layout
-    const trainButton = createButton('Train');
 
     // p5 method that grabs a video feed from the user's device
     const video = createCapture(VIDEO);
@@ -72,9 +67,11 @@ function setup() {
             });
         });
 
+        // creating an html <button> to train...
+        const trainButton = createButton('Train');
+        // place inside the nav element
+        trainButton.parent(select('nav'))
 
-        // <p> tag will be added at end of page below video
-        result = createP();
 
         // when the trainButton is clicked,
         // the training function will begin
@@ -88,6 +85,10 @@ function setup() {
                 }
             });
         })
+
+
+        // <p> tag will be added at end of page below video
+        result = createP();
 
     });
 }

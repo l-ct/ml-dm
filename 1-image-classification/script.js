@@ -1,4 +1,8 @@
 
+
+// verify ml5 has loaded correctly
+console.log('ml5 version:', ml5.version);
+
 // setup is a p5.js function
 function setup(){
     // the following three lines initialize variables
