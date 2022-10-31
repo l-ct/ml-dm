@@ -37,7 +37,7 @@ function draw() {
     // + + + + + + + + + + + + + + + +
     // + + + + + + + + + + + + + + + +
     // comment background and set different colors or opacities
-    background('rgba(255, 255, 255, .01)');
+    background('rgba(255, 255, 255, 1)');
     // + + + + + + + + + + + + + + + +
     // + + + + + + + + + + + + + + + +
     // uncomment below if you want to see the video feed

@@ -7,9 +7,10 @@ console.log('ml5 version:', ml5.version);
 function setup(){
     // the following three lines initialize variables
     // that reference elements on our html page
-    let img = select('img');
-    let result = select('#result');
-    let probability = select('#probability');
+    const img = select('img');
+    console.log(img);
+    const result = select('#result');
+    const probability = select('#probability');
 
     // when loading from another server uncomment this line
     img.elt.crossOrigin = 'Anonymous';

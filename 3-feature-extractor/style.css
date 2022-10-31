@@ -2,6 +2,7 @@ html {
     font-family: verdana;
     font-size: calc(2vmin + 16px);
 }
+
 button {
     font-size: inherit;
     font-family: inherit;
@@ -9,4 +10,12 @@ button {
     background: none;
     border: 1px solid #000;
     text-transform: capitalize;
+}
+
+/*
+ * video feeds are often flipped horizontally
+ * below flips it back to normal
+ */
+video {
+    transform: rotateY(180deg);
 }

@@ -2,6 +2,7 @@ html {
     font-family: verdana;
     font-size: calc(2vmin + 16px);
 }
+
 button {
     font-size: inherit;
     font-family: inherit;
@@ -9,6 +10,7 @@ button {
     background: none;
     border: 1px solid #000;
 }
+
 /* the verticle black rectangle */
 .rectangle {
     /* 
@@ -24,12 +26,11 @@ button {
     height: 100px;
     display: none;
 }
+
 /*
  * video feeds are often flipped horizontally
  * below flips it back to normal
  */
 video {
     transform: rotateY(180deg);
-    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
-    -moz-transform:rotateY(180deg); /* Firefox */
 }

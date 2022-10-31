@@ -1,6 +1,3 @@
-
-
-
 /*
  *
  * the methods addImage() and featureExtractor() are documented at
