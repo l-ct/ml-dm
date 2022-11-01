@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GPT3 Trial</title>
+    <style>
+        html {
+            font: calc(2vmin + 14px) verdana, sans-serif;
+        }
+        body {
+            margin: 1rem;
+        }
+        input {
+            font: inherit;
+        }
+        article {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <form>
+        <input type="text" placeholder="Prompt">
+        <input type="submit" value="Go">
+    </form>
+
+    <article></article>
+
+    <script>
+        // We're using Vanilla JS to manipulate the DOM
+        const form = document.querySelector('form')
+        const article = document.querySelector('article')
+
+        form.addEventListener('submit', async event => {
+
+            // necessary function call to prevent page reload
+            event.preventDefault()
+
+            const textInput = document.querySelector('input[type=text]')
+
+            // make a GET request to our server and wait for response
+            const response = await fetch('/' + textInput.value)
+            // use encodeURIComponent()
+            // if text is not passing to server correctly
+
+            // parse the plain text that our server returns
+            const res = await response.text()
+
+            // adds text to the end of the article element
+            article.innerHTML += res
+
+            // set text field to nothing
+            textInput.value = ''
+
+        });
+
+    </script>
+</body>
+</html>

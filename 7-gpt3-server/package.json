@@ -1,0 +1,16 @@
+{
+  "name": "gpt-3-sandbox",
+  "version": "1.0.0",
+  "description": "Testing GPT3",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "l-ct",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "openai": "^3.0.1"
+  }
+}
