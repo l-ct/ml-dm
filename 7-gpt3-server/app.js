@@ -1,6 +1,3 @@
-// https://beta.openai.com/playground/p/default-tweet-classifier
-
-
 // load OpenAI
 const { Configuration, OpenAIApi } = require('openai')
 
