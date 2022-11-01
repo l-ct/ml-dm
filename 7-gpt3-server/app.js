@@ -15,7 +15,7 @@ const configuration = new Configuration({
     ////////////////////////////
     // PLEASE,
     // replace with your own key
-    apiKey: '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'
+    apiKey: 'place-your-API-key-here'
     ////////////////////////////
 })
 
