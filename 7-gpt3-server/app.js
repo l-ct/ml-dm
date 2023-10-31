@@ -1,5 +1,5 @@
 // load OpenAI
-const { Configuration, OpenAIApi } = require('openai')
+const OpenAI = require('openai')
 
 // load Express
 const express = require('express')
@@ -7,50 +7,76 @@ const express = require('express')
 // initialize express
 const app = express()
 
+
+// ----------------
 // configure OpenAI
-const configuration = new Configuration({
+const openai = new OpenAI({
     ////////////////////////////
-    // PLEASE,
+    ////////////////////////////
     // replace with your own key
     apiKey: 'place-your-API-key-here'
     ////////////////////////////
+    ////////////////////////////
 })
 
-// initialize OpenAI
-const openai = new OpenAIApi(configuration)
 
+// --------
 // homepage
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 })
 
+
+// ------------
 // prompt route
 app.get('/:prompt', async (req, res) => {
 
-    // check to see what server is receiving
-    console.log(req.params.prompt)
+    // get prompt from URL
+    const { prompt } = req.params
 
-    const response = await openai.createCompletion({
+    // check prompt has been sent correctly
+    console.log(prompt)
+
+    // using the newer chat completion method
+    const completion = await openai.chat.completions.create({
+
         ////////////////////////////
-        // Modify this section to guide user
-        // towards a particular kind of response
-        model: "text-davinci-002",
-        // grabs text right from url
-        prompt: req.params.prompt,
-        // reduce number to keep responses short
-        max_tokens: 100,
-        // lowering temperature (0-1) reduces variability
-        temperature: 1
         ////////////////////////////
+        // Modify this section
+        // different models are available
+        model: 'gpt-3.5-turbo',
+        // messages is an array of objects
+        messages: [
+            // these can be chained into a chat,
+            // but for now we're just looking at one off prompts
+            {
+                role: 'system',
+                // you can modify the feel of the app by
+                // modifying the system role's content
+                content: 'You are a surly teenager.'
+            },
+            {
+                role: 'user',
+                // place prompt as user content
+                content: prompt
+            }
+        ],
+        // increase number to lengthen responses
+        max_tokens: 30
+        ////////////////////////////
+        ////////////////////////////
+
     })
 
     // server will send plain text in response
     // if no response, server will crash
-    res.send(response.data.choices[0].text)
+    res.send(completion.choices[0].message.content)
 })
 
+
+// ------------
 // start server
-// if trying to deploy to a host replace 3000 with
+// if deploying to a host replace 3000 with:
 // process.env.PORT || 3000
 app.listen(3000, () => {
     console.log(`app listening at 3000...`)

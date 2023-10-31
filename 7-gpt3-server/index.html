@@ -1,61 +1,68 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GPT3 Trial</title>
-    <style>
-        html {
-            font: calc(2vmin + 14px) verdana, sans-serif;
-        }
-        body {
-            margin: 1rem;
-        }
-        input {
-            font: inherit;
-        }
-        article {
-            margin-top: 1rem;
-        }
-    </style>
-</head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>GPT3 Trial</title>
 
-    <form>
-        <input type="text" placeholder="Prompt">
-        <input type="submit" value="Go">
-    </form>
+        <style>
 
-    <article></article>
+            html {
+                font: calc(2vmin + 14px) verdana, sans-serif;
+            }
+            body {
+                margin: 1rem;
+            }
+            input {
+                font: inherit;
+                padding: 0.5em;
+            }
+            article {
+                margin-top: 1rem;
+            }
 
-    <script>
-        // We're using Vanilla JS to manipulate the DOM
-        const form = document.querySelector('form')
-        const article = document.querySelector('article')
+        </style>
 
-        form.addEventListener('submit', async event => {
+    </head>
+    <body>
 
-            // necessary function call to prevent page reload
-            event.preventDefault()
+        <form>
+            <input type="text" placeholder="Ask a Question">
+            <input type="submit" value="Go">
+        </form>
 
-            const textInput = document.querySelector('input[type=text]')
+        <article></article>
 
-            // make a GET request to our server and wait for response
-            const response = await fetch('/' + textInput.value)
-            // use encodeURIComponent()
-            // if text is not passing to server correctly
+        <script>
 
-            // parse the plain text that our server returns
-            const res = await response.text()
+            // In this example the JavaScript is written right in the HTML file
+            // in between the two <script> tags
+            // We're also using Vanilla JS to manipulate the DOM instead of p5.js
+            const form = document.querySelector('form')
+            const article = document.querySelector('article')
 
-            // adds text to the end of the article element
-            article.innerHTML += res
+            form.addEventListener('submit', async event => {
 
-            // set text field to nothing
-            textInput.value = ''
+                // necessary function call to prevent page reload
+                event.preventDefault()
 
-        });
+                const textInput = document.querySelector('input[type=text]')
 
-    </script>
-</body>
+                // make a GET request to our server and wait for response
+                const response = await fetch('/' + textInput.value)
+                // use encodeURIComponent()
+                // if text is not passing to server correctly
+
+                // parse the plain text that our server returns
+                const res = await response.text()
+
+                // wraps response in p tags and adds it to the beggining of the article element
+                article.innerHTML = `<p>${res}</p>` + article.innerHTML
+
+                // set text field to nothing
+                textInput.value = ''
+
+            });
+
+        </script>
+    </body>
 </html>
